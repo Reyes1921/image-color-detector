@@ -1,0 +1,19 @@
+{
+  "Metadata": {
+    "title": "Reyes Rondón Desarrolador Web | React, Next.Js, NodeJs, TypeScript.",
+    "description": "Soy Reyes Rondón, Ingeniero en Informática con más de 4 años de experiencia en el desarrollo y mantenimiento de aplicaciones web con React, PHP, MySQL y WordPress."
+  },
+  "Header": {
+    "path": "/en",
+    "title": "Es",
+    "logo": "/es.svg",
+    "alt": "Bandera de España",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "about": "Sobre mi"
+  },
+  "Links": {
+    "github": "https://github.com/Reyes1921",
+    "linkedin": "https://www.linkedin.com/in/reyes-rondon/"
+  }
+}
