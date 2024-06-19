@@ -1,4 +1,4 @@
-import {Header, Footer} from "./src/components"
+import {Header, Footer} from "./components"
 
 type Props = {
   children: React.ReactNode
@@ -6,7 +6,7 @@ type Props = {
 
 const Layout = ({children}: Props) => {
   return (
-    <div className="min-h-screen w-full bg-[conic-gradient(at_bottom,_var(--tw-gradient-stops))] from-white via-sky-500 to-sky-500">
+    <div className="min-h-screen w-full bg-gradient-to-r from-sky-400 to-blue-500">
       <Header />
       {children}
       <Footer />
