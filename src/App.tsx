@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react"
 import {extractColors} from "extract-colors"
+import {ClipboardCopy} from "@patternfly/react-core"
 import Layout from "./Layout"
 
 const fileToDataUri = (file: any) =>
@@ -48,11 +49,11 @@ function App() {
   return (
     <Layout>
       <main className="min-h-screen">
-        <h1 className="flex justify-center items-center text-4xl md:text-6xl font-bold p-10">
+        <h1 className="flex justify-center items-center text-4xl md:text-4xl font-bold p-10">
           Image Color Detector
         </h1>
         <div className="grid md:grid-cols-2">
-          <div className="flex flex-col justify-center items-center gradient-background m-5 p-5 rounded-2xl ">
+          <div className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 to-blue-600 m-5 p-5 rounded-2xl ">
             <div className="p-5">
               <img
                 width="200"
@@ -100,7 +101,7 @@ function App() {
               </p>
             </label>
           </div>
-          <div className="flex flex-col justify-start items-center gradient-background m-5 p-5 rounded-2xl ">
+          <div className="flex flex-col justify-start items-center bg-gradient-to-r from-blue-500 to-blue-600 m-5 py-5 px-2 rounded-2xl ">
             <h3 className="text-3xl font-bold flex justify-center items-center">
               Color palette
             </h3>
@@ -112,10 +113,18 @@ function App() {
                   return (
                     <div
                       key={i}
+                      className="flex justify-center text-white p-3 min-w-20"
                       style={{backgroundColor: item.hex}}
-                      className="p-2 m-1 min-w-20"
                     >
-                      <span className="text-white"> {item.hex}</span>
+                      <ClipboardCopy
+                        hoverTip="Copy"
+                        clickTip="Copied"
+                        variant="inline-compact"
+                        isCode
+                        className="text-white mix-blend-screen"
+                      >
+                        {item.hex + "  "}
+                      </ClipboardCopy>
                     </div>
                   )
                 })
