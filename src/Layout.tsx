@@ -6,7 +6,7 @@ type Props = {
 
 const Layout = ({children}: Props) => {
   return (
-    <div className="min-h-screen w-full bg-gradient-to-r from-sky-400 to-blue-500">
+    <div className="min-h-screen w-full bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
       <Header />
       {children}
       <Footer />

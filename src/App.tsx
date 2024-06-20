@@ -48,12 +48,12 @@ function App() {
 
   return (
     <Layout>
-      <main className="min-h-screen">
-        <h1 className="flex justify-center items-center text-4xl md:text-4xl font-bold p-10">
+      <main className="p-2">
+        <h1 className="flex justify-center items-center text-4xl md:text-4xl font-bold p-10 text-sky-400">
           Image Color Detector
         </h1>
-        <div className="grid md:grid-cols-2">
-          <div className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 to-blue-600 m-5 p-5 rounded-2xl ">
+        <div className="grid grid-cols-2 md:grid-cols-3">
+          <div className="flex flex-col col-span-2 md:col-span-1 justify-center items-center bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 m-5 p-5 rounded-2xl ">
             <div className="p-5">
               <img
                 width="200"
@@ -85,6 +85,7 @@ function App() {
               <input
                 type="file"
                 id="uploadFile1"
+                accept=".png,.jpg,.svg,.webp,.gif"
                 className="hidden"
                 onChange={(event) => {
                   const target = event.target as HTMLInputElement
@@ -96,16 +97,16 @@ function App() {
                   }
                 }}
               />
-              <p className="text-xs font-medium text-black-400 mt-2">
+              <p className="text-xs font-bold text-black-400 mt-2">
                 PNG, JPG SVG, WEBP, and GIF are Allowed.
               </p>
             </label>
           </div>
-          <div className="flex flex-col justify-start items-center bg-gradient-to-r from-blue-500 to-blue-600 m-5 py-5 px-2 rounded-2xl ">
+          <div className="flex flex-col col-span-2 justify-start items-center borderImage bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 m-5 py-5 px-2 rounded-2xl ">
             <h3 className="text-3xl font-bold flex justify-center items-center">
               Color palette
             </h3>
-            <div className="flex flex-wrap p-5">
+            <div className="flex flex-wrap justify-around container mt-5 ">
               {loading ? (
                 <span className="loader"></span>
               ) : (
@@ -113,18 +114,69 @@ function App() {
                   return (
                     <div
                       key={i}
-                      className="flex justify-center text-white p-3 min-w-20"
+                      className="flex justify-center flex-col text-sky-400 p-3 min-w-52 rounded-xl m-1"
                       style={{backgroundColor: item.hex}}
                     >
-                      <ClipboardCopy
-                        hoverTip="Copy"
-                        clickTip="Copied"
-                        variant="inline-compact"
-                        isCode
-                        className="text-white mix-blend-screen"
-                      >
-                        {item.hex + "  "}
-                      </ClipboardCopy>
+                      <div className="flex justify-evenly">
+                        <span
+                          className="flex clipboard font-bold"
+                          style={
+                            {
+                              "--light": Math.trunc(item.lightness * 100),
+                            } as React.CSSProperties
+                          }
+                        >
+                          Hex:{" "}
+                        </span>
+                        <ClipboardCopy
+                          hoverTip="Copy"
+                          clickTip="Copied"
+                          variant="inline-compact"
+                          isCode
+                          style={
+                            {
+                              "--light": Math.trunc(item.lightness * 100),
+                            } as React.CSSProperties
+                          }
+                          className="clipboard "
+                        >
+                          {item.hex + "  "}
+                        </ClipboardCopy>
+                      </div>
+                      <div className="flex justify-evenly">
+                        <span
+                          className="flex clipboard font-bold"
+                          style={
+                            {
+                              "--light": Math.trunc(item.lightness * 100),
+                            } as React.CSSProperties
+                          }
+                        >
+                          RGB:{" "}
+                        </span>
+                        <ClipboardCopy
+                          hoverTip="Copy"
+                          clickTip="Copied"
+                          variant="inline-compact"
+                          isCode
+                          style={
+                            {
+                              "--light": Math.trunc(item.lightness * 100),
+                            } as React.CSSProperties
+                          }
+                          className="clipboard"
+                        >
+                          {"rgb" +
+                            "(" +
+                            item.red +
+                            "," +
+                            item.green +
+                            "," +
+                            item.blue +
+                            ")" +
+                            " "}
+                        </ClipboardCopy>
+                      </div>
                     </div>
                   )
                 })

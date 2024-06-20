@@ -20,7 +20,7 @@ export const Footer = () => {
     },
   ]
   return (
-    <footer className="w-full md:max-w-[850px] mx-auto">
+    <footer className="md:max-w-[850px] md:absolute w-full bottom-0 mx-auto left-0 right-0">
       <div className="container flex justify-between items-center p-4 pt-0">
         <div className="flex">
           {icons.map((icon) => (
@@ -28,13 +28,13 @@ export const Footer = () => {
               href={icon.path}
               key={icon.alt}
               target="_blank"
-              className="p-2 hover:scale-110 hover:opacity-70 inline-block"
+              className="p-2 hover:scale-110 hover:opacity-70 inline-block invert"
             >
               <img src={icon.src} height="12" width="20" alt={icon.alt} />
             </a>
           ))}
         </div>
-        <p className="p-2"> Reyes Rondón</p>
+        <p className="p-2 text-white"> Reyes Rondón</p>
       </div>
     </footer>
   )
