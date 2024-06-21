@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react"
 import {extractColors} from "extract-colors"
-import {ClipboardCopy} from "@patternfly/react-core"
 import Layout from "./Layout"
+import {Palette} from "./components"
 
 const fileToDataUri = (file: any) =>
   new Promise((resolve, reject) => {
@@ -38,7 +38,9 @@ function App() {
     }
     fileToDataUri(file).then((dataUri) => {
       setDataUri(dataUri)
-      setLoading(false)
+      setTimeout(() => {
+        setLoading(false)
+      }, 1500)
     })
   }
 
@@ -48,19 +50,19 @@ function App() {
 
   return (
     <Layout>
-      <main className="p-2">
+      <main className="p-2 min-h-screen main">
         <h1 className="flex justify-center items-center text-4xl md:text-4xl font-bold p-10 text-sky-400">
           Image Color Detector
         </h1>
         <div className="grid grid-cols-2 md:grid-cols-3">
-          <div className="flex flex-col col-span-2 md:col-span-1 justify-center items-center bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 m-5 p-5 rounded-2xl ">
-            <div className="p-5">
+          <div className="flex flex-col col-span-2  md:col-span-1 justify-center items-center bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 m-5 p-5 rounded-2xl ">
+            <div className="p-5 ">
               <img
                 width="200"
                 height="200"
                 src={dataUri}
                 alt="avatar"
-                className="rounded-2xl"
+                className="rounded-2xl max-h-[200]"
               />
             </div>
             <label
@@ -97,88 +99,23 @@ function App() {
                   }
                 }}
               />
-              <p className="text-xs font-bold text-black-400 mt-2">
+              <p className="text-md font-bold text-black-400 mt-2">
                 PNG, JPG SVG, WEBP, and GIF are Allowed.
               </p>
             </label>
           </div>
-          <div className="flex flex-col col-span-2 justify-start items-center borderImage bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 m-5 py-5 px-2 rounded-2xl ">
+          <div className=" col-span-2 relative min-h-[450px] justify-start items-center borderImage bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 m-5 py-5 px-2 rounded-2xl ">
             <h3 className="text-3xl font-bold flex justify-center items-center">
               Color palette
             </h3>
-            <div className="flex flex-wrap justify-around container mt-5 ">
+            <div className="flex flex-wrap justify-center items-center container mt-5">
               {loading ? (
-                <span className="loader"></span>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <span className="loader absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
+                </div>
               ) : (
                 color.map((item: ColorsData, i: number) => {
-                  return (
-                    <div
-                      key={i}
-                      className="flex justify-center flex-col text-sky-400 p-3 min-w-52 rounded-xl m-1"
-                      style={{backgroundColor: item.hex}}
-                    >
-                      <div className="flex justify-evenly">
-                        <span
-                          className="flex clipboard font-bold"
-                          style={
-                            {
-                              "--light": Math.trunc(item.lightness * 100),
-                            } as React.CSSProperties
-                          }
-                        >
-                          Hex:{" "}
-                        </span>
-                        <ClipboardCopy
-                          hoverTip="Copy"
-                          clickTip="Copied"
-                          variant="inline-compact"
-                          isCode
-                          style={
-                            {
-                              "--light": Math.trunc(item.lightness * 100),
-                            } as React.CSSProperties
-                          }
-                          className="clipboard "
-                        >
-                          {item.hex + "  "}
-                        </ClipboardCopy>
-                      </div>
-                      <div className="flex justify-evenly">
-                        <span
-                          className="flex clipboard font-bold"
-                          style={
-                            {
-                              "--light": Math.trunc(item.lightness * 100),
-                            } as React.CSSProperties
-                          }
-                        >
-                          RGB:{" "}
-                        </span>
-                        <ClipboardCopy
-                          hoverTip="Copy"
-                          clickTip="Copied"
-                          variant="inline-compact"
-                          isCode
-                          style={
-                            {
-                              "--light": Math.trunc(item.lightness * 100),
-                            } as React.CSSProperties
-                          }
-                          className="clipboard"
-                        >
-                          {"rgb" +
-                            "(" +
-                            item.red +
-                            "," +
-                            item.green +
-                            "," +
-                            item.blue +
-                            ")" +
-                            " "}
-                        </ClipboardCopy>
-                      </div>
-                    </div>
-                  )
+                  return <Palette {...item} key={i} />
                 })
               )}
             </div>
