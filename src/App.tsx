@@ -3,15 +3,6 @@ import {extractColors} from "extract-colors"
 import Layout from "./Layout"
 import {Palette} from "./components"
 
-const fileToDataUri = (file: any) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.onload = (event) => {
-      resolve(event.target?.result)
-    }
-    reader.readAsDataURL(file)
-  })
-
 interface ColorsData {
   hex: string
   red: number
@@ -24,6 +15,21 @@ interface ColorsData {
   area: number
 }
 
+//Colors Config
+const options = {
+  pixels: 70000,
+  distance: 0.15,
+}
+
+const fileToDataUri = (file: any) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload = (event) => {
+      resolve(event.target?.result)
+    }
+    reader.readAsDataURL(file)
+  })
+
 function App() {
   const [dataUri, setDataUri] = useState<any>("/placeholder.svg")
   const [color, setColor] = useState<any>([])
@@ -31,8 +37,8 @@ function App() {
 
   const onChange = (file: any) => {
     setLoading(true)
-    if (!file) {
-      setDataUri("")
+    if (!file || file.size > 1e7) {
+      setDataUri("/placeholder.svg")
       setLoading(false)
       return
     }
@@ -40,29 +46,27 @@ function App() {
       setDataUri(dataUri)
       setTimeout(() => {
         setLoading(false)
-      }, 1500)
+      }, 1000)
     })
   }
 
   useEffect(() => {
-    extractColors(dataUri).then(setColor).catch(console.error)
+    extractColors(dataUri, options).then(setColor).catch(console.error)
   }, [dataUri])
 
   return (
     <Layout>
       <main className="p-2 min-h-screen main">
-        <h1 className="flex justify-center items-center text-4xl md:text-4xl font-bold p-10 text-sky-400">
+        <h1 className="text-center text-4xl md:text-4xl font-bold p-10 text-sky-400">
           Image Color Detector
         </h1>
         <div className="grid grid-cols-2 md:grid-cols-3">
-          <div className="flex flex-col col-span-2  md:col-span-1 justify-center items-center bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 m-5 p-5 rounded-2xl ">
-            <div className="p-5 ">
+          <div className="flex flex-col col-span-2 md:col-span-1 justify-start items-cetner bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 m-5 p-5 rounded-2xl ">
+            <div className="p-5 flex justify-center items-center">
               <img
-                width="200"
-                height="200"
                 src={dataUri}
-                alt="avatar"
-                className="rounded-2xl max-h-[200]"
+                alt="Placeholder image"
+                className="rounded-2xl max-w-[400] max-h-[300] animated zoomIn"
               />
             </div>
             <label
@@ -83,11 +87,12 @@ function App() {
                   data-original="#000000"
                 />
               </svg>
-              Upload file
+              Upload file <br />
+              <span className="font-thin">10Mb Max</span>
               <input
                 type="file"
                 id="uploadFile1"
-                accept=".png,.jpg,.svg,.webp,.gif"
+                accept=".png,.jpg,.svg,.webp,.gif, .jpeg"
                 className="hidden"
                 onChange={(event) => {
                   const target = event.target as HTMLInputElement
@@ -99,8 +104,8 @@ function App() {
                   }
                 }}
               />
-              <p className="text-md font-bold text-black-400 mt-2">
-                PNG, JPG SVG, WEBP, and GIF are Allowed.
+              <p className="text-md font-bold text-black-400 mt-2 text-center">
+                PNG, JPG, JPEG, SVG, WEBP, and GIF are Allowed.
               </p>
             </label>
           </div>
@@ -110,9 +115,7 @@ function App() {
             </h3>
             <div className="flex flex-wrap justify-center items-center container mt-5">
               {loading ? (
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <span className="loader absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
-                </div>
+                <span className="loader absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
               ) : (
                 color.map((item: ColorsData, i: number) => {
                   return <Palette {...item} key={i} />

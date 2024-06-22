@@ -15,57 +15,42 @@ interface ColorsData {
 export const Palette = (item: ColorsData) => {
   return (
     <div
-      className="flex justify-center flex-col p-3 min-w-52 rounded-xl m-1"
+      className="flex justify-center flex-col p-2 rounded-xl m-1 animated zoomIn min-w-[210px]"
       style={{backgroundColor: item.hex}}
     >
-      <div className="flex justify-evenly">
-        <span
-          className="flex clipboard"
-          style={
-            {
-              "--light": Math.trunc(item.lightness * 100),
-            } as React.CSSProperties
-          }
-        >
-          Hex:{" "}
-        </span>
+      <div
+        style={
+          {
+            "--light": Math.trunc(item.lightness * 100),
+          } as React.CSSProperties
+        }
+        className="flex justify-evenly border-2 rounded p-2 mb-2 clipboard"
+      >
+        <span className="flex">Hex: </span>
         <ClipboardCopy
           hoverTip="Copy"
           clickTip="Copied"
           variant="inline-compact"
           isCode
-          style={
-            {
-              "--light": Math.trunc(item.lightness * 100),
-            } as React.CSSProperties
-          }
-          className="clipboard "
         >
           {item.hex + "  "}
         </ClipboardCopy>
       </div>
-      <div className="flex justify-evenly">
-        <span
-          className="flex clipboard"
-          style={
-            {
-              "--light": Math.trunc(item.lightness * 100),
-            } as React.CSSProperties
-          }
-        >
-          RGB:{" "}
-        </span>
+      <div
+        style={
+          {
+            "--light": Math.trunc(item.lightness * 100),
+          } as React.CSSProperties
+        }
+        className="flex justify-evenly border-2 rounded p-2 clipboard"
+      >
+        <span className="flex">RGB: </span>
         <ClipboardCopy
           hoverTip="Copy"
           clickTip="Copied"
           variant="inline-compact"
           isCode
-          style={
-            {
-              "--light": Math.trunc(item.lightness * 100),
-            } as React.CSSProperties
-          }
-          className="clipboard"
+          className="flex"
         >
           {"rgb" +
             "(" +

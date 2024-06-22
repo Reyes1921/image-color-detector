@@ -9,20 +9,22 @@ recommended 50 - 70 */
   --threshold: 50;
 }
 
-.bakbak-one-regular {
-  font-family: "Bakbak One", sans-serif;
+/*Font*/
+/* .krona-one-regular {
+  font-family: "Krona One", sans-serif;
   font-weight: 400;
   font-style: normal;
-}
+} */
 
 * {
-  font-family: "Bakbak One", sans-serif;
+  font-family: "Krona One", sans-serif;
 }
 
 .main {
   min-height: calc(100vh - 8vh);
 }
 
+/*Loader*/
 .loader {
   width: 60px;
   height: 40px;
@@ -163,9 +165,11 @@ recommended 50 - 70 */
   }
 }
 
+/*Copy clipboard*/
 .clipboard {
   --switch: calc((var(--light) - var(--threshold)) * -100%);
   color: hsl(0, 0%, var(--switch));
+  border-color: hsl(0, 0%, var(--switch));
 }
 
 .gradient-border {
@@ -205,4 +209,63 @@ recommended 50 - 70 */
   50% {
     background-position: 100% 50%;
   }
+}
+
+/*Zoom in effect*/
+.zoomIn {
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #38bdf8 #111827;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #38bdf8;
+  border-radius: 10px;
+  border: 3px solid #ffffff;
 }
