@@ -15,7 +15,7 @@ interface ColorsData {
 export const Palette = (item: ColorsData) => {
   return (
     <div
-      className="flex justify-center flex-col p-2 rounded-xl m-1 animated zoomIn min-w-[210px]"
+      className="flex justify-center flex-col p-1.5 rounded-xl m-1 animated zoomIn max-w-[200px] min-w-[200px]"
       style={{backgroundColor: item.hex}}
     >
       <div
@@ -24,14 +24,15 @@ export const Palette = (item: ColorsData) => {
             "--light": Math.trunc(item.lightness * 100),
           } as React.CSSProperties
         }
-        className="flex justify-evenly border-2 rounded p-2 mb-2 clipboard"
+        className="flex justify-evenly border-2 rounded p-1.5 mb-2 clipboard"
       >
-        <span className="flex">Hex: </span>
+        <span className="flex text-[10px]">Hex: </span>
         <ClipboardCopy
           hoverTip="Copy"
           clickTip="Copied"
           variant="inline-compact"
           isCode
+          className="text-[10px]"
         >
           {item.hex + "  "}
         </ClipboardCopy>
@@ -44,13 +45,13 @@ export const Palette = (item: ColorsData) => {
         }
         className="flex justify-evenly border-2 rounded p-2 clipboard"
       >
-        <span className="flex">RGB: </span>
+        <span className="flex text-[10px]">RGB: </span>
         <ClipboardCopy
           hoverTip="Copy"
           clickTip="Copied"
           variant="inline-compact"
           isCode
-          className="flex"
+          className="flex text-[10px]"
         >
           {"rgb" +
             "(" +

@@ -10,11 +10,11 @@ recommended 50 - 70 */
 }
 
 /*Font*/
-/* .krona-one-regular {
+.krona-one-regular {
   font-family: "Krona One", sans-serif;
   font-weight: 400;
   font-style: normal;
-} */
+}
 
 * {
   font-family: "Krona One", sans-serif;
@@ -22,6 +22,15 @@ recommended 50 - 70 */
 
 .main {
   min-height: calc(100vh - 8vh);
+}
+
+.swal2-confirm.swal2-styled {
+  background-color: #2a79d0;
+}
+
+.swal2-title,
+div.swal2-container div.swal2-html-container {
+  color: #000;
 }
 
 /*Loader*/

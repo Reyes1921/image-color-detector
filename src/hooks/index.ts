@@ -1,0 +1,1 @@
+export {useFileToData} from "./useFileToData"
