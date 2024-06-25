@@ -32,7 +32,7 @@ export const Palette = (item: ColorsData) => {
             "--light": Math.trunc(item.lightness * 100),
           } as React.CSSProperties
         }
-        className="flex justify-evenly border-2 rounded p-2 clipboard"
+        className="flex justify-evenly border-2 rounded p-2 clipboard text-[10px]"
       >
         <span className="flex text-[10px]">RGB: </span>
         <ClipboardCopy

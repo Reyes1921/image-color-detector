@@ -10,6 +10,7 @@ import {ColorsData, OptionsColorExtractor} from "./interfaces/interfaces"
 function App() {
   const [file, setFile] = useState<File>()
   const [dataUri, loading, loaded] = useValidateFile(file as File)
+  const [state, setState] = useState<"normal" | "hover">("normal")
   const [color, setColor] = useState<Array<ColorsData>>([])
   const ref = useRef<HTMLDivElement | null>(null)
 
@@ -24,7 +25,10 @@ function App() {
       onDrop({source}) {
         const files: File[] = getFiles({source})
         setFile(files[0])
+        setState("normal")
       },
+      onDragEnter: () => setState("hover"),
+      onDragLeave: () => setState("normal"),
     })
   }, [])
 
@@ -50,26 +54,32 @@ function App() {
         <div className="grid grid-cols-2 md:grid-cols-3">
           <div
             ref={ref}
-            className="flex flex-col col-span-2 md:col-span-1 justify-start items-cetner bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 m-5 p-5 rounded-2xl first-palette"
+            className={` ${
+              state === "hover"
+                ? "scale-105 ease-in-out duration-500 shadow-secondary-1"
+                : "ease-in-out duration-500 "
+            } border-2 border-sky-400 border-dashed flex flex-col col-span-2 md:col-span-1 justify-start items-cetner m-2 p-5 rounded-2xl first-palette bg-[#090C14]`}
           >
-            <div className="p-5 flex justify-center items-center">
+            <div className="p-5 flex flex-col justify-center items-center">
               <img
                 src={dataUri as string}
                 alt="Placeholder image"
-                className={`rounded-2xl max-w-[400] max-h-[300] animated zoomIn ${
+                className={`rounded-2xl max-w-[400] max-h-[300] animated zoomIn ease-in-out duration-500 ${
                   loaded ? "block" : "hidden"
                 }`}
               />
               <img
                 src="/cloud-upload.svg"
                 alt="Cloud Upload Logo"
-                className={`${loaded ? "hidden" : "block"}`}
+                className={`invert ${loaded ? "hidden" : "block"}`}
               />
+              <span className=" text-sky-400">Drop an Image</span>
+              <span className=" text-sky-400">or</span>
             </div>
-            <div className="bg-transparent text-black-500 font-semibold text-sm max-w-md flex flex-col items-center justify-center cursor-pointer border-2 border-black border-dashed mx-auto font-[sans-serif] p-2 rounded-2xl">
+            <div className="bg-transparent text-black-500 font-semibold text-sm max-w-md flex flex-col items-center justify-center cursor-pointer mx-auto font-[sans-serif] p-2 rounded-2xl">
               <label
                 htmlFor="uploadFile1"
-                className="flex bg-gray-800 hover:bg-gray-700 text-white text-base px-5 py-3 outline-none rounded w-max cursor-pointer mx-auto font-[sans-serif]"
+                className="flex bg-gray-800 hover:bg-gray-700  text-sky-400 text-base px-5 py-3 outline-none rounded w-max cursor-pointer mx-auto font-[sans-serif]"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +95,7 @@ function App() {
                     data-original="#000000"
                   />
                 </svg>
-                Upload
+                Upload a File
                 <input
                   type="file"
                   id="uploadFile1"
@@ -94,14 +104,16 @@ function App() {
                   onChange={onChange}
                 />
               </label>
-              <span className="text-xs font-thin mt-2">10Mb Max</span>
-              <p className="text-xs font-bold text-black-400 mt-2 text-center">
+              <span className="text-xs font-thin mt-2 text-sky-400">
+                10Mb Max
+              </span>
+              <p className="text-xs font-bold  text-sky-400 mt-2 text-center">
                 PNG, JPG, JPEG, SVG, WEBP, and GIF are Allowed.
               </p>
             </div>
           </div>
-          <div className="col-span-2 relative min-h-[450px] justify-start items-center borderImage bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 m-2 py-5 px-2 rounded-2xl ">
-            <h3 className="text-xl font-bold flex justify-center items-center">
+          <div className="col-span-2 relative min-h-[450px] justify-start items-center borderImage border-2 border-sky-400 m-2 py-5 px-2 rounded-2xl bg-[#090C14]">
+            <h3 className="text-xl font-bold flex justify-center items-center text-sky-400">
               Color palette
             </h3>
             <div className="flex flex-wrap justify-center items-center container mt-5">
