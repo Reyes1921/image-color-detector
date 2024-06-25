@@ -1,16 +1,5 @@
 import {ClipboardCopy} from "@patternfly/react-core"
-
-interface ColorsData {
-  hex: string
-  red: number
-  green: number
-  blue: number
-  hue: number
-  intensity: number
-  lightness: number
-  saturation: number
-  area: number
-}
+import {ColorsData} from "../interfaces/interfaces"
 
 export const Palette = (item: ColorsData) => {
   return (

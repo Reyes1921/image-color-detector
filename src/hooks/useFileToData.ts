@@ -1,3 +1,4 @@
+//read the contents of the specified Blob or File and represent the file information as a base64 encoded string.
 export const useFileToData = (): {
   fileToDataUri: (file: File) => Promise<string>
 } => {

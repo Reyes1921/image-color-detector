@@ -2,38 +2,18 @@ import {useEffect, useState, useRef} from "react"
 import {extractColors} from "extract-colors"
 import Layout from "./Layout"
 import {Palette} from "./components"
-import Swal from "sweetalert2"
 import {dropTargetForExternal} from "@atlaskit/pragmatic-drag-and-drop/external/adapter"
 import {getFiles} from "@atlaskit/pragmatic-drag-and-drop/external/file"
-import {useFileToData} from "./hooks"
-
-//API response
-interface ColorsData {
-  hex: string
-  red: number
-  green: number
-  blue: number
-  hue: number
-  intensity: number
-  lightness: number
-  saturation: number
-  area: number
-}
-
-//Colors Config
-const options = {
-  pixels: 70000,
-  distance: 0.18,
-}
+import {useValidateFile} from "./hooks"
+import {ColorsData, OptionsColorExtractor} from "./interfaces/interfaces"
 
 function App() {
-  const [dataUri, setDataUri] = useState<string>("/placeholder.svg")
+  const [file, setFile] = useState<File>()
+  const [dataUri, loading, loaded] = useValidateFile(file as File)
   const [color, setColor] = useState<Array<ColorsData>>([])
-  const [loading, setLoading] = useState(false)
-  const [loaded, setLoaded] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
-  const {fileToDataUri} = useFileToData()
 
+  //read drag and drop file
   useEffect(() => {
     const el = ref.current
     if (!el) {
@@ -43,49 +23,29 @@ function App() {
       element: el,
       onDrop({source}) {
         const files: File[] = getFiles({source})
-        setDataUri(files[0].name)
+        setFile(files[0])
       },
     })
   }, [])
 
-  const onChange = (file: any) => {
-    setLoading(true)
-    if (!file) {
-      if (file?.size > 1e7) {
-        Swal.fire({
-          title: "Error!",
-          text: "Please upload an image smaller than 100mb",
-          icon: "error",
-          confirmButtonText: "Ok",
-        })
-        setLoading(false)
-        setLoaded(false)
-        return
-      }
-      setDataUri("/cloud-upload.svg")
-      setLoading(false)
-      setLoaded(false)
-      return
-    }
-
-    fileToDataUri(file).then((dataFileReader) => {
-      setDataUri(dataFileReader)
-      setLoaded(true)
-      setTimeout(() => {
-        setLoading(false)
-      }, 1000)
-    })
+  //read file in input
+  const onChange = (file: React.ChangeEvent<HTMLInputElement>) => {
+    const laodedFile = file.target.files?.[0]
+    setFile(laodedFile)
   }
 
+  //extract colors from encoded file,blob
   useEffect(() => {
-    extractColors(dataUri, options).then(setColor).catch(console.error)
+    extractColors(dataUri as string, OptionsColorExtractor)
+      .then(setColor)
+      .catch(console.error)
   }, [dataUri])
 
   return (
     <Layout>
       <main className="p-2 min-h-screen main w-full md:max-w-[1000px] mx-auto">
         <h1 className="text-center text-xl md:text-2xl font-bold p-8 text-sky-400">
-          Image Color Detector
+          Easy Image Color Detector
         </h1>
         <div className="grid grid-cols-2 md:grid-cols-3">
           <div
@@ -94,7 +54,7 @@ function App() {
           >
             <div className="p-5 flex justify-center items-center">
               <img
-                src={dataUri}
+                src={dataUri as string}
                 alt="Placeholder image"
                 className={`rounded-2xl max-w-[400] max-h-[300] animated zoomIn ${
                   loaded ? "block" : "hidden"
@@ -131,15 +91,7 @@ function App() {
                   id="uploadFile1"
                   accept=".png,.jpg,.svg,.webp,.gif,.jpeg"
                   className="hidden"
-                  onChange={(event) => {
-                    const target = event.target as HTMLInputElement
-
-                    if (target.files) {
-                      onChange(target.files[0])
-                    } else {
-                      onChange(null)
-                    }
-                  }}
+                  onChange={onChange}
                 />
               </label>
               <span className="text-xs font-thin mt-2">10Mb Max</span>
