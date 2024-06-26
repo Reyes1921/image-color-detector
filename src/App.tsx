@@ -1,11 +1,14 @@
-import {useEffect, useState, useRef} from "react"
-import {extractColors} from "extract-colors"
 import Layout from "./Layout"
-import {Palette} from "./components"
+import {useEffect, useState, useRef} from "react"
+import {Info, Palette, ImageUpload} from "./components"
 import {dropTargetForExternal} from "@atlaskit/pragmatic-drag-and-drop/external/adapter"
-import {getFiles} from "@atlaskit/pragmatic-drag-and-drop/external/file"
 import {useValidateFile} from "./hooks"
+import {getFiles} from "@atlaskit/pragmatic-drag-and-drop/external/file"
+import {extractColors} from "extract-colors"
 import {ColorsData, OptionsColorExtractor} from "./interfaces/interfaces"
+import Zoom from "react-medium-image-zoom"
+import {zoom} from "./utils/zoom"
+import "react-medium-image-zoom/dist/styles.css"
 
 function App() {
   const [file, setFile] = useState<File>()
@@ -13,6 +16,7 @@ function App() {
   const [state, setState] = useState<"normal" | "hover">("normal")
   const [color, setColor] = useState<Array<ColorsData>>([])
   const ref = useRef<HTMLDivElement | null>(null)
+  const [CustomZoomContent] = zoom()
 
   //read drag and drop file
   useEffect(() => {
@@ -60,59 +64,31 @@ function App() {
                 : "ease-in-out duration-500 "
             } border-2 border-sky-400 border-dashed flex flex-col col-span-2 md:col-span-1 justify-start items-cetner m-2 p-5 rounded-2xl first-palette bg-[#090C14]`}
           >
-            <div className="p-5 flex flex-col justify-center items-center">
-              <img
-                src={dataUri as string}
-                alt="Placeholder image"
-                className={`rounded-2xl max-w-[400] max-h-[300] animated zoomIn ease-in-out duration-500 ${
-                  loaded ? "block" : "hidden"
-                }`}
-              />
-              <img
-                src="/cloud-upload.svg"
-                alt="Cloud Upload Logo"
-                className={`invert ${loaded ? "hidden" : "block"}`}
-              />
-              <span className=" text-sky-400">Drop an Image</span>
+            <div className="p-5 flex flex-col justify-center items-center mb-0 pb-0">
+              <Zoom ZoomContent={CustomZoomContent}>
+                <img
+                  src={dataUri as string}
+                  alt="Placeholder image"
+                  className={`rounded-2xl max-w-[400] max-h-[300] animated zoomIn ease-in-out duration-500 ${
+                    loaded ? "block" : "hidden"
+                  }`}
+                />
+              </Zoom>
+              <Zoom ZoomContent={CustomZoomContent}>
+                <img
+                  src="/cloud-upload.svg"
+                  alt="Cloud Upload Logo"
+                  className={` ${loaded ? "hidden" : "block"}`}
+                />
+              </Zoom>
+              <span className=" text-sky-400 text-center mt-2">
+                Drop an Image
+              </span>
               <span className=" text-sky-400">or</span>
             </div>
-            <div className="bg-transparent text-black-500 font-semibold text-sm max-w-md flex flex-col items-center justify-center cursor-pointer mx-auto font-[sans-serif] p-2 rounded-2xl">
-              <label
-                htmlFor="uploadFile1"
-                className="flex bg-gray-800 hover:bg-gray-700  text-sky-400 text-base px-5 py-3 outline-none rounded w-max cursor-pointer mx-auto font-[sans-serif]"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 mr-2 fill-white inline"
-                  viewBox="0 0 32 32"
-                >
-                  <path
-                    d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"
-                    data-original="#000000"
-                  />
-                  <path
-                    d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z"
-                    data-original="#000000"
-                  />
-                </svg>
-                Upload a File
-                <input
-                  type="file"
-                  id="uploadFile1"
-                  accept=".png,.jpg,.svg,.webp,.gif,.jpeg"
-                  className="hidden"
-                  onChange={onChange}
-                />
-              </label>
-              <span className="text-xs font-thin mt-2 text-sky-400">
-                10Mb Max
-              </span>
-              <p className="text-xs font-bold  text-sky-400 mt-2 text-center">
-                PNG, JPG, JPEG, SVG, WEBP, and GIF are Allowed.
-              </p>
-            </div>
+            <ImageUpload onChange={onChange} />
           </div>
-          <div className="col-span-2 relative min-h-[450px] justify-start items-center borderImage border-2 border-sky-400 m-2 py-5 px-2 rounded-2xl bg-[#090C14]">
+          <div className="col-span-2 relative min-h-[450px] justify-start items-center borderImage border-2 border-sky-400 m-2 py-5 px-1 rounded-2xl bg-[#090C14]">
             <h3 className="text-xl font-bold flex justify-center items-center text-sky-400">
               Color palette
             </h3>
@@ -127,6 +103,7 @@ function App() {
             </div>
           </div>
         </div>
+        <Info />
       </main>
     </Layout>
   )

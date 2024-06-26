@@ -4,12 +4,13 @@ import {ColorsData} from "../interfaces/interfaces"
 export const Palette = (item: ColorsData) => {
   return (
     <div
-      className="flex justify-center flex-col p-1.5 rounded-xl m-1 animated zoomIn max-w-[200px] min-w-[200px]"
+      className="flex justify-center flex-col p-1.5 rounded-xl m-1 animated zoomIn max-w-[200px] min-w-[200px] border-2 border-sky-400"
       style={{backgroundColor: item.hex}}
     >
       <div
         style={
           {
+            borderColor: item.hex,
             "--light": Math.trunc(item.lightness * 100),
           } as React.CSSProperties
         }
@@ -29,6 +30,7 @@ export const Palette = (item: ColorsData) => {
       <div
         style={
           {
+            borderColor: item.hex,
             "--light": Math.trunc(item.lightness * 100),
           } as React.CSSProperties
         }

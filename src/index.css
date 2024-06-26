@@ -178,12 +178,11 @@ div.swal2-container div.swal2-html-container {
 .clipboard {
   --switch: calc((var(--light) - var(--threshold)) * -100%);
   color: hsl(0, 0%, var(--switch));
-  border-color: hsl(0, 0%, var(--switch));
+  /* border-color: hsl(0, 0%, var(--switch)); */
 }
 
 .gradient-border {
   --border-width: 3px;
-
   position: relative;
   background: #222;
   border-radius: var(--border-width);
