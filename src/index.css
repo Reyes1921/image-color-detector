@@ -37,7 +37,7 @@ div.swal2-container div.swal2-html-container {
 .loader {
   width: 60px;
   height: 40px;
-  --base-color: #2f93df; /*use your base color*/
+  --base-color: #000; /*use your base color*/
 }
 .loader::before {
   content: "";
@@ -47,7 +47,7 @@ div.swal2-container div.swal2-html-container {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background-color: #000;
+  background-color: #38bdf8;
   background-image: radial-gradient(
       circle 8px at 18px 18px,
       var(--base-color) 100%,
@@ -110,7 +110,7 @@ div.swal2-container div.swal2-html-container {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background-color: #000;
+  background-color: #38bdf8;
   background-image: radial-gradient(
       circle 5px at 12px 12px,
       var(--base-color) 100%,

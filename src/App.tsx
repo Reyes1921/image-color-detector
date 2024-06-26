@@ -6,17 +6,15 @@ import {useValidateFile} from "./hooks"
 import {getFiles} from "@atlaskit/pragmatic-drag-and-drop/external/file"
 import {extractColors} from "extract-colors"
 import {ColorsData, OptionsColorExtractor} from "./interfaces/interfaces"
-import Zoom from "react-medium-image-zoom"
-import {zoom} from "./utils/zoom"
-import "react-medium-image-zoom/dist/styles.css"
+import {Message} from "primereact/message"
+import {Image} from "primereact/image"
 
 function App() {
   const [file, setFile] = useState<File>()
-  const [dataUri, loading, loaded] = useValidateFile(file as File)
+  const [dataUri, loading, loaded, errors] = useValidateFile(file as File)
   const [state, setState] = useState<"normal" | "hover">("normal")
   const [color, setColor] = useState<Array<ColorsData>>([])
   const ref = useRef<HTMLDivElement | null>(null)
-  const [CustomZoomContent] = zoom()
 
   //read drag and drop file
   useEffect(() => {
@@ -65,22 +63,29 @@ function App() {
             } border-2 border-sky-400 border-dashed flex flex-col col-span-2 md:col-span-1 justify-start items-cetner m-2 p-5 rounded-2xl first-palette bg-[#090C14]`}
           >
             <div className="p-5 flex flex-col justify-center items-center mb-0 pb-0">
-              <Zoom ZoomContent={CustomZoomContent}>
-                <img
-                  src={dataUri as string}
-                  alt="Placeholder image"
-                  className={`rounded-2xl max-w-[400] max-h-[300] animated zoomIn ease-in-out duration-500 ${
-                    loaded ? "block" : "hidden"
-                  }`}
+              <Image
+                src={dataUri as string}
+                alt="Placeholder image"
+                className={`rounded-2xl max-w-[400] max-h-[300] animated zoomIn ease-in-out duration-500 ${
+                  loaded ? "block" : "hidden"
+                }`}
+                preview
+              />
+              <Image
+                src="/cloud-upload.svg"
+                alt="Cloud Upload Logo"
+                className={` ${loaded ? "hidden" : "block"}`}
+                preview
+              />
+              {
+                <Message
+                  severity="error"
+                  className={`${
+                    errors ? "flex" : "hidden"
+                  } bg-[#492F3A] text-sm`}
+                  text="Error on Upload"
                 />
-              </Zoom>
-              <Zoom ZoomContent={CustomZoomContent}>
-                <img
-                  src="/cloud-upload.svg"
-                  alt="Cloud Upload Logo"
-                  className={` ${loaded ? "hidden" : "block"}`}
-                />
-              </Zoom>
+              }
               <span className=" text-sky-400 text-center mt-2">
                 Drop an Image
               </span>

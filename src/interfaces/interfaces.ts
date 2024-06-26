@@ -17,12 +17,6 @@ export const OptionsColorExtractor = {
   distance: 0.18,
 }
 
-//Zoom Config
-export interface CustomZoomContentProps {
-  buttonUnzoom: React.ReactNode
-  img: React.ReactNode
-}
-
 //OnchangeFunction
 export interface ImageUploadProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
