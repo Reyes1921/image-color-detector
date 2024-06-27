@@ -84,7 +84,7 @@ function App() {
                   className={`${
                     errors ? "flex" : "hidden"
                   } bg-[#492F3A] text-sm`}
-                  text="Error on Upload"
+                  text="Error on Upload, check type and size of the image"
                 />
               }
               <span className=" text-sky-400 text-center mt-2">

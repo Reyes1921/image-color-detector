@@ -12,7 +12,6 @@ export function Clipboard(Clipboard: ColorConfig) {
 
   const copyToClipboard = () => {
     if (inputRef.current) {
-      inputRef.current.readOnly = false
       inputRef.current.select()
       document.execCommand("copy")
       setCopySuccess("Copied!")
