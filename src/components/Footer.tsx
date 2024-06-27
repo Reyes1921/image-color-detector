@@ -1,7 +1,7 @@
 export const Footer = () => {
   const icons = [
     {
-      path: "https://github.com/Reyes1921",
+      path: "https://github.com/Reyes1921/image-color-detector",
       src: "/github.svg",
       title: "Github",
       alt: '"github logo',

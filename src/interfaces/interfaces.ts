@@ -11,13 +11,12 @@ export interface ColorsData {
   area: number
 }
 
-//Colors Config
-export const OptionsColorExtractor = {
-  pixels: 70000,
-  distance: 0.18,
-}
-
 //OnchangeFunction
 export interface ImageUploadProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+//ClipboardConfig
+export interface ColorConfig {
+  textClipboard: string
 }

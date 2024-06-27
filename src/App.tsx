@@ -5,9 +5,10 @@ import {dropTargetForExternal} from "@atlaskit/pragmatic-drag-and-drop/external/
 import {useValidateFile} from "./hooks"
 import {getFiles} from "@atlaskit/pragmatic-drag-and-drop/external/file"
 import {extractColors} from "extract-colors"
-import {ColorsData, OptionsColorExtractor} from "./interfaces/interfaces"
+import {ColorsData} from "./interfaces/interfaces"
 import {Message} from "primereact/message"
 import {Image} from "primereact/image"
+import {OptionsColorExtractor} from "./utils/OptionColorConfig"
 
 function App() {
   const [file, setFile] = useState<File>()
@@ -51,7 +52,7 @@ function App() {
     <Layout>
       <main className="p-2 min-h-screen main w-full md:max-w-[1000px] mx-auto">
         <h1 className="text-center text-xl md:text-2xl font-bold p-8 text-sky-400">
-          Easy Image Color Detector
+          Image Color Detector
         </h1>
         <div className="grid grid-cols-2 md:grid-cols-3">
           <div
@@ -60,7 +61,7 @@ function App() {
               state === "hover"
                 ? "scale-105 ease-in-out duration-500 shadow-secondary-1"
                 : "ease-in-out duration-500 "
-            } border-2 border-sky-400 border-dashed flex flex-col col-span-2 md:col-span-1 justify-start items-cetner m-2 p-5 rounded-2xl first-palette bg-[#090C14]`}
+            } border-2 border-sky-400 border-dashed flex flex-col col-span-2 md:col-span-1 justify-start items-cetner m-2 p-5 rounded-2xl first-palette bg-[#101726]`}
           >
             <div className="p-5 flex flex-col justify-center items-center mb-0 pb-0">
               <Image
@@ -93,7 +94,7 @@ function App() {
             </div>
             <ImageUpload onChange={onChange} />
           </div>
-          <div className="col-span-2 relative min-h-[450px] justify-start items-center borderImage border-2 border-sky-400 m-2 py-5 px-1 rounded-2xl bg-[#090C14]">
+          <div className="col-span-2 relative min-h-[450px] justify-start items-center borderImage border-2 border-sky-400 m-2 py-5 px-1 rounded-2xl bg-[#101726]">
             <h3 className="text-xl font-bold flex justify-center items-center text-sky-400">
               Color palette
             </h3>

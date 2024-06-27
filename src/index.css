@@ -10,8 +10,9 @@ recommended 50 - 70 */
 }
 
 /*Font*/
-.krona-one-regular {
-  font-family: "Krona One", sans-serif;
+@font-face {
+  font-family: "Krona One";
+  src: url("/fonts/KronaOne-Regular.ttf");
   font-weight: 400;
   font-style: normal;
 }
@@ -22,15 +23,6 @@ recommended 50 - 70 */
 
 .main {
   min-height: calc(100vh - 8vh);
-}
-
-.swal2-confirm.swal2-styled {
-  background-color: #2a79d0;
-}
-
-.swal2-title,
-div.swal2-container div.swal2-html-container {
-  color: #000;
 }
 
 /*Loader*/
@@ -178,7 +170,7 @@ div.swal2-container div.swal2-html-container {
 .clipboard {
   --switch: calc((var(--light) - var(--threshold)) * -100%);
   color: hsl(0, 0%, var(--switch));
-  /* border-color: hsl(0, 0%, var(--switch)); */
+  border-color: hsl(0, 0%, var(--switch));
 }
 
 .gradient-border {
@@ -276,4 +268,13 @@ div.swal2-container div.swal2-html-container {
   background-color: #38bdf8;
   border-radius: 10px;
   border: 3px solid #ffffff;
+}
+
+.p-image-preview-indicator,
+.p-image-action.p-link {
+  color: #fff;
+}
+
+.p-image-preview-container:hover > .p-image-preview-indicator {
+  background-color: rgba(0, 0, 0, 0.5);
 }
