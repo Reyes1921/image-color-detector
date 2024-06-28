@@ -1,4 +1,7 @@
+import {useTranslation} from "react-i18next"
+
 export const Footer = () => {
+  const {t} = useTranslation()
   const icons = [
     {
       path: "https://github.com/Reyes1921/image-color-detector",
@@ -7,7 +10,7 @@ export const Footer = () => {
       alt: '"github logo',
     },
     {
-      path: "https://www.linkedin.com/in/reyes-rondon/?locale=en_US",
+      path: t("linkedin"),
       src: "/linkedin.svg",
       title: "Linkedin",
       alt: '"linkedin logo',

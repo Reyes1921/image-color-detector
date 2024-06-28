@@ -1,6 +1,8 @@
 import {ImageUploadProps} from "../interfaces/interfaces"
+import {useTranslation} from "react-i18next"
 
 export const ImageUpload: React.FC<ImageUploadProps> = ({onChange}) => {
+  const {t} = useTranslation()
   return (
     <div className="bg-transparent text-black-500 font-semibold text-sm max-w-md flex flex-col items-center justify-center cursor-pointer mx-auto font-[sans-serif] p-2 rounded-2xl">
       <label
@@ -14,7 +16,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({onChange}) => {
           height={20}
           className="mr-2"
         />
-        Upload a File
+        {t("upload")}
         <input
           type="file"
           id="uploadFile1"
@@ -23,9 +25,9 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({onChange}) => {
           onChange={onChange}
         />
       </label>
-      <span className="text-xs font-thin mt-2 text-sky-400">10Mb Max</span>
+      <span className="text-xs font-thin mt-2 text-sky-400">{t("mb")}</span>
       <p className="text-xs font-bold  text-sky-400 mt-2 text-center">
-        PNG, JPG, JPEG, SVG, WEBP, and GIF are Allowed.
+        {t("types")}
       </p>
     </div>
   )

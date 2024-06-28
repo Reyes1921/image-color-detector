@@ -1,19 +1,16 @@
 import {createBrowserRouter, Navigate, RouterProvider} from "react-router-dom"
 
-import {Home, HomeEs} from "./pages"
+import {Home} from "./pages"
+import "./i18n"
 
 const router = createBrowserRouter([
   {
-    path: "/en",
+    path: "/",
     element: <Home />,
   },
   {
-    path: "/es",
-    element: <HomeEs />,
-  },
-  {
     path: "/*",
-    element: <Navigate to={"/en"} />,
+    element: <Navigate to={"/"} />,
   },
 ])
 

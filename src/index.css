@@ -278,3 +278,7 @@ recommended 50 - 70 */
 .p-image-preview-container:hover > .p-image-preview-indicator {
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+div.p-selectbutton div.p-button {
+  padding: 8px;
+}

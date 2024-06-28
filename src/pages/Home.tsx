@@ -6,9 +6,10 @@ import {getFiles} from "@atlaskit/pragmatic-drag-and-drop/external/file"
 import {extractColors} from "extract-colors"
 import {OptionsColorExtractor} from "../utils/OptionColorConfig"
 import {Image} from "primereact/image"
+import {Message} from "primereact/message"
 import {ImageUpload, Info, Palette} from "../components"
 import Layout from "../layout/Layout"
-import {Message} from "primereact/message"
+import {useTranslation} from "react-i18next"
 
 export const Home = () => {
   const [file, setFile] = useState<File>()
@@ -48,12 +49,12 @@ export const Home = () => {
       .catch(console.error)
   }, [dataUri])
 
+  //Languages
+  const {t} = useTranslation()
+
   return (
     <Layout>
-      <main className="p-2 min-h-screen main w-full md:max-w-[1000px] mx-auto px-10 md:p-x10 md:py-5 ">
-        <h1 className="text-center text-xl md:text-2xl font-bold p-8 text-sky-400">
-          Image Color Detector
-        </h1>
+      <main className="p-2 min-h-screen main w-full md:max-w-[1000px] mx-auto px-10 md:p-x10 md:py-2 ">
         <div className="grid grid-cols-2 md:grid-cols-3">
           <div
             ref={ref}
@@ -84,19 +85,19 @@ export const Home = () => {
                   className={`${
                     errors ? "flex" : "hidden"
                   } bg-[#492F3A] text-sm`}
-                  text="Error on Upload, check type and size of the image"
+                  text={t("error")}
                 />
               }
               <span className=" text-sky-400 text-center mt-2">
-                Drop an Image
+                {t("drop")}
               </span>
-              <span className=" text-sky-400">or</span>
+              <span className=" text-sky-400"> {t("o")}</span>
             </div>
             <ImageUpload onChange={onChange} />
           </div>
           <div className="col-span-2 relative min-h-[450px] justify-start items-center borderImage border-2  border-sky-400 m-2 py-5 px-1 rounded-2xl bg-[#101726]">
             <h3 className="text-xl font-bold flex justify-center items-center text-sky-400">
-              Color palette
+              {t("palette")}
             </h3>
             <div className="flex flex-wrap justify-center items-center container mt-5">
               {loading ? (
