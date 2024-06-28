@@ -4,7 +4,7 @@ export const Footer = () => {
   const {t} = useTranslation()
   const icons = [
     {
-      path: "https://github.com/Reyes1921/image-color-detector",
+      path: t("git"),
       src: "/github.svg",
       title: "Github",
       alt: '"github logo',
