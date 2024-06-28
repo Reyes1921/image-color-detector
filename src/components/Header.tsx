@@ -25,7 +25,7 @@ export const Header = () => {
     <header className="w-full md:max-w-[1000px] mx-auto">
       <div className="flex justify-around items-center  px-10 flex-col md:flex-row py-6 md:p-5">
         <div>
-          <h1 className="text-left text-xl md:text-2xl font-bold text-sky-400 pb-5 md:pb-0">
+          <h1 className="text-left text-xl md:text-2xl font-bold text-white pb-5 md:pb-0">
             Image Color Detector
           </h1>
         </div>

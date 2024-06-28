@@ -7,7 +7,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({onChange}) => {
     <div className="bg-transparent text-black-500 font-semibold text-sm max-w-md flex flex-col items-center justify-center cursor-pointer mx-auto font-[sans-serif] p-2 rounded-2xl">
       <label
         htmlFor="uploadFile1"
-        className="flex bg-gray-800 hover:bg-gray-700  text-sky-400 text-base px-5 py-2  mt-0 outline-none rounded w-max cursor-pointer mx-auto font-[sans-serif]"
+        className="flex bg-gray-800 hover:bg-gray-700  text-white text-base px-5 py-2  mt-0 outline-none rounded w-max cursor-pointer mx-auto font-[sans-serif]"
       >
         <img
           src="/cloud-upload.svg"
@@ -26,7 +26,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({onChange}) => {
         />
       </label>
       <span className="text-xs font-thin mt-2 text-sky-400">{t("mb")}</span>
-      <p className="text-xs font-bold  text-sky-400 mt-2 text-center">
+      <p className="text-xs font-bold  text-white mt-2 text-center">
         {t("types")}
       </p>
     </div>

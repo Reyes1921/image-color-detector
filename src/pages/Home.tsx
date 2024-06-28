@@ -96,7 +96,7 @@ export const Home = () => {
             <ImageUpload onChange={onChange} />
           </div>
           <div className="col-span-2 relative min-h-[450px] justify-start items-center borderImage border-2  border-sky-400 m-2 py-5 px-1 rounded-2xl bg-[#101726]">
-            <h3 className="text-xl font-bold flex justify-center items-center text-sky-400">
+            <h3 className="text-xl font-bold flex justify-center items-center text-white">
               {t("palette")}
             </h3>
             <div className="flex flex-wrap justify-center items-center container mt-5">
