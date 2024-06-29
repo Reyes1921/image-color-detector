@@ -25,7 +25,7 @@ export function Clipboard(Clipboard: ColorConfig) {
         ref={inputRef}
         defaultValue={`${currentColor.textClipboard}`}
         readOnly={true}
-        className="h-10 clipboard w-full rounded-lg border-2 bg-transparent py-1 pl-3 pr-5 text-[11px] outline-none duration-200 selection:bg-transparent focus:border-primary"
+        className="h-10 clipboard w-full rounded-lg border-2 bg-transparent py-1 pl-1 pr-5 text-[11px] outline-none duration-200 selection:bg-transparent focus:border-primary"
       />
       <button
         onClick={copyToClipboard}
