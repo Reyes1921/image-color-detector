@@ -40,7 +40,7 @@ npm run dev
 
 </div>
 
-# Contacto
+# ✉️ Contacto
 
 - Correo electrónico: reyesjrondon@gmail.com
 - [Portafolio](https://www.reyesrondon.dev/es)
