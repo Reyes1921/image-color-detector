@@ -4,10 +4,10 @@ import {useTranslation} from "react-i18next"
 export const ImageUpload: React.FC<ImageUploadProps> = ({onChange}) => {
   const {t} = useTranslation()
   return (
-    <div className="bg-transparent text-black-500 font-semibold text-sm max-w-md flex flex-col items-center justify-center cursor-pointer mx-auto font-[sans-serif] p-2 rounded-2xl">
+    <div className="bg-transparent text-black-500 font-semibold text-sm max-w-md flex flex-col items-center justify-center cursor-pointer  font-[sans-serif] p-5 rounded-2xl">
       <label
         htmlFor="uploadFile1"
-        className="flex bg-gray-800 hover:bg-gray-700  text-white text-base px-5 py-2  mt-0 outline-none rounded w-max cursor-pointer mx-auto font-[sans-serif]"
+        className="flex bg-gray-800 hover:bg-gray-700  text-white text-base px-3 py-2  mt-0 outline-none rounded w-max cursor-pointer  font-[sans-serif]"
       >
         <img
           src="/cloud-upload.svg"
