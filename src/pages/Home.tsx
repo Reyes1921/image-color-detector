@@ -68,7 +68,7 @@ export const Home = () => {
               <Image
                 src={dataUri as string}
                 alt="Placeholder image"
-                className={`rounded-2xl min-w-[100px] min-h-[50px] animated zoomIn ease-in-out duration-500 ${
+                className={`rounded-2xl min-w-[100px] min-h-[50px] [animation-duration:1s] [animation-fill-mode:both] [animation-name:zoomIn] ease-in-out duration-500 ${
                   loaded ? "block" : "hidden"
                 }`}
                 preview

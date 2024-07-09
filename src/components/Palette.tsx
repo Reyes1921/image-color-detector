@@ -4,7 +4,7 @@ import {Clipboard} from "./Clipboard"
 export const Palette = (item: ColorsData) => {
   return (
     <div
-      className="flex mix-blend-lighten justify-center flex-col p-1.5 rounded-xl m-1 animated zoomIn max-w-[180px] min-w-[180px] border-2 border-sky-400"
+      className="flex mix-blend-lighten justify-center flex-col p-1.5 rounded-xl m-1 [animation-duration:1s] [animation-fill-mode:both] [animation-name:zoomIn] max-w-[180px] min-w-[180px] border-2 border-sky-400"
       style={{backgroundColor: item.hex}}
     >
       <div
