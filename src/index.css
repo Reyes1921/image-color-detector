@@ -4,8 +4,6 @@
 
 :root {
   --light: 80;
-  /* the threshold at which colors are considered "light." Range: integers from 0 to 100,
-recommended 50 - 70 */
   --threshold: 50;
 }
 
@@ -21,141 +19,9 @@ recommended 50 - 70 */
   font-family: "Krona One", sans-serif;
 }
 
-.main {
-  min-height: calc(100vh - 8vh);
-}
-
 /*Loader*/
 .loader {
-  width: 60px;
-  height: 40px;
-  --base-color: #000; /*use your base color*/
-}
-.loader::before {
-  content: "";
-  left: 0;
-  top: 0;
-  position: absolute;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background-color: #38bdf8;
-  background-image: radial-gradient(
-      circle 8px at 18px 18px,
-      var(--base-color) 100%,
-      transparent 0
-    ),
-    radial-gradient(
-      circle 4px at 18px 0px,
-      var(--base-color) 100%,
-      transparent 0
-    ),
-    radial-gradient(
-      circle 4px at 0px 18px,
-      var(--base-color) 100%,
-      transparent 0
-    ),
-    radial-gradient(
-      circle 4px at 36px 18px,
-      var(--base-color) 100%,
-      transparent 0
-    ),
-    radial-gradient(
-      circle 4px at 18px 36px,
-      var(--base-color) 100%,
-      transparent 0
-    ),
-    radial-gradient(
-      circle 4px at 30px 5px,
-      var(--base-color) 100%,
-      transparent 0
-    ),
-    radial-gradient(
-      circle 4px at 30px 5px,
-      var(--base-color) 100%,
-      transparent 0
-    ),
-    radial-gradient(
-      circle 4px at 30px 30px,
-      var(--base-color) 100%,
-      transparent 0
-    ),
-    radial-gradient(
-      circle 4px at 5px 30px,
-      var(--base-color) 100%,
-      transparent 0
-    ),
-    radial-gradient(
-      circle 4px at 5px 5px,
-      var(--base-color) 100%,
-      transparent 0
-    );
-  background-repeat: no-repeat;
-  box-sizing: border-box;
-  animation: rotationBack 3s linear infinite;
-}
-.loader::after {
-  content: "";
-  left: 35px;
-  top: 15px;
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background-color: #38bdf8;
-  background-image: radial-gradient(
-      circle 5px at 12px 12px,
-      var(--base-color) 100%,
-      transparent 0
-    ),
-    radial-gradient(
-      circle 2.5px at 12px 0px,
-      var(--base-color) 100%,
-      transparent 0
-    ),
-    radial-gradient(
-      circle 2.5px at 0px 12px,
-      var(--base-color) 100%,
-      transparent 0
-    ),
-    radial-gradient(
-      circle 2.5px at 24px 12px,
-      var(--base-color) 100%,
-      transparent 0
-    ),
-    radial-gradient(
-      circle 2.5px at 12px 24px,
-      var(--base-color) 100%,
-      transparent 0
-    ),
-    radial-gradient(
-      circle 2.5px at 20px 3px,
-      var(--base-color) 100%,
-      transparent 0
-    ),
-    radial-gradient(
-      circle 2.5px at 20px 3px,
-      var(--base-color) 100%,
-      transparent 0
-    ),
-    radial-gradient(
-      circle 2.5px at 20px 20px,
-      var(--base-color) 100%,
-      transparent 0
-    ),
-    radial-gradient(
-      circle 2.5px at 3px 20px,
-      var(--base-color) 100%,
-      transparent 0
-    ),
-    radial-gradient(
-      circle 2.5px at 3px 3px,
-      var(--base-color) 100%,
-      transparent 0
-    );
-  background-repeat: no-repeat;
-  box-sizing: border-box;
-  animation: rotationBack 4s linear infinite reverse;
+  --base-color: #101726; /*use your base color*/
 }
 @keyframes rotationBack {
   0% {
@@ -171,44 +37,6 @@ recommended 50 - 70 */
   --switch: calc((var(--light) - var(--threshold)) * -100%);
   color: hsl(0, 0%, var(--switch));
   border-color: hsl(0, 0%, var(--switch));
-}
-
-.gradient-border {
-  --border-width: 3px;
-  position: relative;
-  background: #222;
-  border-radius: var(--border-width);
-
-  &::after {
-    position: absolute;
-    content: "";
-    top: calc(-1 * var(--border-width));
-    left: calc(-1 * var(--border-width));
-    z-index: -1;
-    width: calc(100% + var(--border-width) * 2);
-    height: calc(100% + var(--border-width) * 2);
-    background: linear-gradient(
-      60deg,
-      hsl(224, 85%, 66%),
-      hsl(269, 85%, 66%),
-      hsl(314, 85%, 66%),
-      hsl(359, 85%, 66%),
-      hsl(44, 85%, 66%),
-      hsl(89, 85%, 66%),
-      hsl(134, 85%, 66%),
-      hsl(179, 85%, 66%)
-    );
-    background-size: 300% 300%;
-    background-position: 0 50%;
-    border-radius: calc(2 * var(--border-width));
-    animation: moveGradient 4s alternate infinite;
-  }
-}
-
-@keyframes moveGradient {
-  50% {
-    background-position: 100% 50%;
-  }
 }
 
 /*Zoom in effect*/

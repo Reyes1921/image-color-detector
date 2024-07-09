@@ -54,7 +54,7 @@ export const Home = () => {
 
   return (
     <Layout>
-      <main className="p-2 min-h-screen main w-full md:max-w-[1000px] mx-auto px-10 md:p-x10 md:py-2 ">
+      <main className="p-2 min-h-screen min-h-[calc(100vh - 8vh)] w-full md:max-w-[1000px] mx-auto px-10 md:p-x10 md:py-2 ">
         <div className="grid grid-cols-2 md:grid-cols-3">
           <div
             ref={ref}
@@ -101,7 +101,7 @@ export const Home = () => {
             </h3>
             <div className="flex flex-wrap justify-center items-center container mt-5">
               {loading ? (
-                <span className="loader absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
+                <span className="loader w-[60px] h-[40px] absolute before:content-[''] before:left-[0] before:top-[0] before:absolute before:w-[36px] before:h-[36px] before:rounded-[50%] before:bg-[#38bdf8] before:bg-[radial-gradient(_circle_8px_at_18px_18px,_var(--base-color)_100%,_transparent_0_),_radial-gradient(_circle_4px_at_18px_0px,_var(--base-color)_100%,_transparent_0_),_radial-gradient(_circle_4px_at_0px_18px,_var(--base-color)_100%,_transparent_0_),_radial-gradient(_circle_4px_at_36px_18px,_var(--base-color)_100%,_transparent_0_),_radial-gradient(_circle_4px_at_18px_36px,_var(--base-color)_100%,_transparent_0_),_radial-gradient(_circle_4px_at_30px_5px,_var(--base-color)_100%,_transparent_0_),_radial-gradient(_circle_4px_at_30px_5px,_var(--base-color)_100%,_transparent_0_),_radial-gradient(_circle_4px_at_30px_30px,_var(--base-color)_100%,_transparent_0_),_radial-gradient(_circle_4px_at_5px_30px,_var(--base-color)_100%,_transparent_0_),_radial-gradient(_circle_4px_at_5px_5px,_var(--base-color)_100%,_transparent_0_)] before:bg-no-repeat before:box-border before:animate-[rotationBack_3s_linear_infinite] after:content-[''] after:left-[35px] after:top-[15px] after:absolute after:w-[24px] after:h-[24px] after:rounded-[50%] after:bg-[#38bdf8] after:bg-[radial-gradient(_circle_5px_at_12px_12px,_var(--base-color)_100%,_transparent_0_),_radial-gradient(_circle_2.5px_at_12px_0px,_var(--base-color)_100%,_transparent_0_),_radial-gradient(_circle_2.5px_at_0px_12px,_var(--base-color)_100%,_transparent_0_),_radial-gradient(_circle_2.5px_at_24px_12px,_var(--base-color)_100%,_transparent_0_),_radial-gradient(_circle_2.5px_at_12px_24px,_var(--base-color)_100%,_transparent_0_),_radial-gradient(_circle_2.5px_at_20px_3px,_var(--base-color)_100%,_transparent_0_),_radial-gradient(_circle_2.5px_at_20px_3px,_var(--base-color)_100%,_transparent_0_),_radial-gradient(_circle_2.5px_at_20px_20px,_var(--base-color)_100%,_transparent_0_),_radial-gradient(_circle_2.5px_at_3px_20px,_var(--base-color)_100%,_transparent_0_),_radial-gradient(_circle_2.5px_at_3px_3px,_var(--base-color)_100%,_transparent_0_)] after:bg-no-repeat after:box-border after:animate-[rotationBack_4s_linear_infinite_reverse] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
               ) : (
                 color.map((item: ColorsData, i) => {
                   return <Palette {...item} key={i} />
