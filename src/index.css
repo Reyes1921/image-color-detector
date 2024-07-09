@@ -5,6 +5,7 @@
 :root {
   --light: 80;
   --threshold: 50;
+  --base-color: #e5e7eb;
 }
 
 /*Font*/
@@ -21,7 +22,7 @@
 
 /*Loader*/
 .loader {
-  --base-color: #101726; /*use your base color*/
+  /*use your base color*/
 }
 @keyframes rotationBack {
   0% {

@@ -31,13 +31,13 @@ export const Footer = () => {
               href={icon.path}
               key={icon.alt}
               target="_blank"
-              className="p-2 hover:scale-110 hover:opacity-70 inline-block invert"
+              className="p-2 hover:scale-110 hover:opacity-70 inline-block dark:invert"
             >
               <img src={icon.src} height="12" width="20" alt={icon.alt} />
             </a>
           ))}
         </div>
-        <p className="p-2 text-white"> Reyes Rondón</p>
+        <p className="p-2 text-black dark:text-white"> Reyes Rondón</p>
       </div>
     </footer>
   )
