@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react"
-// import {setCookie, getCookie, hasCookie} from "cookies-next"
 
 export const DarkMode = () => {
   const [isDark, setIsDark] = useState(true)
@@ -8,7 +7,6 @@ export const DarkMode = () => {
     setIsDark(!isDark)
     let darkModeValue = isDark ? "light" : "dark"
     localStorage.setItem("theme", darkModeValue)
-    // setCookie("theme", darkModeValue, {maxAge: 2592000})
     document.documentElement.classList.toggle("dark")
   }
 
