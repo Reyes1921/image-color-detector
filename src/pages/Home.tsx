@@ -1,15 +1,17 @@
-import {useEffect, useRef, useState} from "react"
-import {useValidateFile} from "../hooks"
 import {ColorsData} from "../interfaces/interfaces"
 import {dropTargetForExternal} from "@atlaskit/pragmatic-drag-and-drop/external/adapter"
-import {getFiles} from "@atlaskit/pragmatic-drag-and-drop/external/file"
 import {extractColors} from "extract-colors"
-import {OptionsColorExtractor} from "../utils/OptionColorConfig"
+import {getFiles} from "@atlaskit/pragmatic-drag-and-drop/external/file"
+
 import {Image} from "primereact/image"
-import {Message} from "primereact/message"
+
 import {ImageUpload, Info, Palette} from "../components"
-import Layout from "../layout/Layout"
+import {Message} from "primereact/message"
+import {OptionsColorExtractor} from "../utils/OptionColorConfig"
+import {useEffect, useRef, useState} from "react"
 import {useTranslation} from "react-i18next"
+import {useValidateFile} from "../hooks"
+import Layout from "../layout/Layout"
 
 export const Home = () => {
   const [file, setFile] = useState<File>()
